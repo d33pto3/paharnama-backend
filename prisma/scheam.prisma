@@ -1,0 +1,24 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Admin {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  password String
+  createdAt DateTime @default(now())
+}
+
+model Mountain {
+  id          Int      @id @default(autoincrement())
+  name        String
+  location    String
+  height      Float
+  description String?
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+}

@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+  moduleFormat    = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Mountain {
+  id                  Int      @id @default(autoincrement())
+  name                String
+  description         String?
+  altitude            String?
+  has_death_zone      Boolean @default(false)
+  location            String
+  first_climber       String?
+  first_climbed_date  DateTime?
+  createdAt           DateTime @default(now())
+  mountain_img        String?
+  country_flag_img    String?
+}

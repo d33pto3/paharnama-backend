@@ -32,7 +32,7 @@ model MountainTranslation {
   mountain      Mountain  @relation(fields: [mountainId], references: [id])
   mountainId    Int
   language      String
-  name          String
+  key          String
   description   String?
   location      String?
   first_climber String?

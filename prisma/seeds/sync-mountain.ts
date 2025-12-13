@@ -3,11 +3,10 @@ import xlsx from 'xlsx';
 import { prisma } from '../../lib/prisma';
 
 type Row = {
-  mountain_key: string;
+  key: string;
   altitude?: string;
   has_death_zone: boolean;
   language: string;
-  key: string;
   location?: string;
 };
 
@@ -46,14 +45,14 @@ async function sync() {
           },
         },
         update: {
-          name: row.key,
-          location: row.location || '',
+          key: row.key,
+          location: row.location ?? null,
         },
         create: {
           mountainId: mountain.id,
           language: row.language,
-          name: row.key,
-          location: row.location || '',
+          key: row.key,
+          location: row.location ?? null,
         },
       });
     }

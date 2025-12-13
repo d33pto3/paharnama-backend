@@ -15,15 +15,27 @@ datasource db {
 }
 
 model Mountain {
-  id                  Int      @id @default(autoincrement())
-  name                String
-  description         String?
+  id                  Int       @id @default(autoincrement())
+  key                 String    @unique
   altitude            String?
-  has_death_zone      Boolean @default(false)
-  location            String
-  first_climber       String?
+  has_death_zone      Boolean   @default(false)
   first_climbed_date  DateTime?
-  createdAt           DateTime @default(now())
+  createdAt           DateTime  @default(now())
   mountain_img        String?
   country_flag_img    String?
+
+  translations        MountainTranslation[]
+}
+
+model MountainTranslation {
+  id            Int       @id @default(autoincrement())
+  mountain      Mountain  @relation(fields: [mountainId], references: [id])
+  mountainId    Int
+  language      String
+  name          String
+  description   String?
+  location      String
+  first_climber String?
+
+  @@unique([mountainId, language])
 }

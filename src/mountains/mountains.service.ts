@@ -18,7 +18,9 @@ export class MountainsService {
           : undefined,
         mountain_img: mountainData.mountain_img,
         country_flag_img: mountainData.country_flag_img,
-        translations: { create: translations },
+        translations: {
+          create: translations?.map((t) => ({ ...t, key: mountainData.key })),
+        },
       },
       include: { translations: true },
     });

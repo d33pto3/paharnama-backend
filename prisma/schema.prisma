@@ -34,7 +34,7 @@ model MountainTranslation {
   language      String
   name          String
   description   String?
-  location      String
+  location      String?
   first_climber String?
 
   @@unique([mountainId, language])

@@ -97,3 +97,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 # paharnama-backend
+
+
+### TO UPDATE THE DATABASE WITH INFO
+
+1. Update the mountains.xlsx file with the latest info.
+2. Run the sync-mountain.ts file.

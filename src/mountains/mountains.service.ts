@@ -9,13 +9,15 @@ export class MountainsService {
 
   async create(dto: CreateMountainDto) {
     const { translations, ...mountainData } = dto;
-
-    const { first_climbed_date, ...restMountainData } = mountainData;
-
     return this.prisma.db.mountain.create({
       data: {
-        first_climbed_date: first_climbed_date && new Date(first_climbed_date),
-        ...restMountainData,
+        key: mountainData.key,
+        has_death_zone: mountainData.hasDeathZone,
+        first_climbed_date: mountainData?.first_climbed_date
+          ? new Date(mountainData.first_climbed_date)
+          : undefined,
+        mountain_img: mountainData.mountain_img,
+        country_flag_img: mountainData.country_flag_img,
         translations: { create: translations },
       },
       include: { translations: true },

@@ -4,12 +4,42 @@ meta {
   seq: 1
 }
 
-get {
-  url: 
-  body: none
+post {
+  url: http://localhost:3030/api/mountains
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "altitude": "8848m",
+    "has_death_zone": true,
+    "first_climbed_date": "1953-05-29",
+    "mountain_img": "https://example.com/everest.jpg",
+    "country_flag_img": "https://example.com/nepal.png",
+    "translations": [
+      {
+        "language": "en",
+        "name": "Mount Everest",
+        "description": "Highest mountain in the world",
+        "location": "Nepal / China"
+      },
+      {
+        "language": "bn",
+        "name": "মাউন্ট এভারেস্ট",
+        "description": "পৃথিবীর সর্বোচ্চ পর্বত",
+        "location": "নেপাল / চীন"
+      }
+    ]
+  }
+  
+}
+
+body:form-urlencoded {
+  : 
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

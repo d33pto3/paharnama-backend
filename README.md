@@ -103,3 +103,4 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 1. Update the mountains.xlsx file with the latest info.
 2. Run the sync-mountain.ts file.
+```npx tsx prisma/seeds/sync-mountain.ts```

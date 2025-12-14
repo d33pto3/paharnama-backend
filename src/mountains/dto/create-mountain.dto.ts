@@ -8,7 +8,7 @@ export class CreateMountainDto {
 
   translations?: {
     language: string;
-    key: string;
+    name: string;
     description?: string;
     location?: string;
     first_climber?: string;

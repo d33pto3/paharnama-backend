@@ -82,6 +82,8 @@ async function sync() {
         },
       });
     }
+  }, {
+    timeout: 30000,
   });
 
   console.log('✅ Mountain sync completed');

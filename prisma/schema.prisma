@@ -12,6 +12,52 @@ datasource db {
   provider = "postgresql"
 }
 
+// ==================== AUTH MODELS ====================
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  role          Role      @default(USER)
+  isActive      Boolean   @default(true)
+  isVerified    Boolean   @default(false)
+  
+  // Profile fields
+  firstName     String?
+  lastName      String?
+  phone         String?
+  
+  // Security
+  refreshToken  String?
+  lastLoginAt   DateTime?
+  
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  emailVerifications EmailVerification[]
+  
+  @@map("users")
+}
+
+model EmailVerification {
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  token     String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  
+  @@map("email_verifications")
+}
+
 model Mountain {
   id                  Int       @id @default(autoincrement())
   key                 String    @unique
